@@ -40,6 +40,10 @@ function NewPoemForm({ onAddPoem }) {
 
     console.log("submited");
   }
+  // function onAddPoem(newPoem) {
+  //   setPoems([ ...poems,newPoem]);
+  //   console.log("new poems :", newPoem);
+  // }
   return (
     <form className="new-poem-form" onSubmit={handleSubmit}>
       <input
