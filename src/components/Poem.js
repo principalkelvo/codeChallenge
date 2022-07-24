@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+
 
 function Poem({poems}) {
   const [read, setRead] = useState(true);
 
-  
+  const handleRead = (id) => () => {
+    setRead((read) => ({
+      ...read,
+      [id]: !read[id],
+    }));
 
-  function handleRead(){
-    setRead((read)=> !read)
-    console.log("handleRead: ");
-  }
+    console.log("thePoem");
+  };
 
   console.log(poems);
   const eachPoem = poems.map((poem) => (
@@ -16,22 +19,26 @@ function Poem({poems}) {
       <h3>{poem.title}</h3>
       <p>{poem.content}</p>
       <p>
-        <strong>- {poem.author}</strong>
+        <strong>-By {poem.author}</strong>
       </p>
-      <button onClick={handleRead}>{read ? 'Mark as read' : 'Mark as unread'}</button>
+      <button onClick={handleRead(poem.id)}>
+        {read[poem.id] ? "Mark as unread" : "Mark as read"}
+      </button>
     </div>
   ));
-  // console.log(eachPoem);
-  return <div>{eachPoem}</div>
+  console.log(eachPoem);
+  return(
+   <div>{eachPoem}</div>
 
   // <div>
-  //   <h3>{eachPoem.title}</h3>
+  //   <h3>title</h3>
   //   <p>Content</p>
   //   <p>
   //     <strong>- By Author</strong>
   //   </p>
   //   <button>Mark as read</button>
   // </div>
+  )
 }
 
 export default Poem;
